@@ -1,0 +1,132 @@
+<AnnouncementScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme['primary']
+        padding: '15dp'
+        spacing: '20dp'
+        NavigationBar:
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 1
+            spacing: '10dp'
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: '20dp'
+                spacing: '15dp'
+                size_hint: 0.4, 1
+                md_bg_color: app.theme['secondary']
+                radius: 5
+                MyLabel:
+                    text: 'Create an Announcement'
+                    halign: 'center'
+                    font_size: '20dp'
+                    color: app.theme['accent']
+                    bold: True
+                MDTextField:
+                    id: title
+                    mode: 'round'
+                    hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                    fill_color_normal: app.theme['tertiary']
+                    line_color_normal: app.theme['tertiary']
+                    line_color_focus: app.theme['accent']
+                    text_color_normal: 1, 1, 1, 1
+                    text_color_focus: 1, 1, 1, 1
+                    size_hint_x: 1
+                    hint_text: 'Post Title'
+                ScrollView:
+                    MDTextField:
+                        id: details
+                        mode: 'fill'
+                        multiline: True
+                        fill_color_normal: app.theme['tertiary']
+                        fill_color_focus: app.theme['tertiary']
+                        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                        hint_text_color_focus: app.theme['accent']
+                        line_color_normal: app.theme['tertiary']
+                        line_color_focus: app.theme['accent']
+                        text_color_normal: 1, 1, 1, 1
+                        text_color_focus: 1, 1, 1, 1
+                        size_hint: 1, None
+                        height: self.minimum_height
+                        hint_text: 'Post Details'
+                MDFillRoundFlatButton:
+                    text: "Post Announcement"
+                    md_bg_color: app.theme['violet']
+                    size_hint_x: 1
+                    on_press: root.post_announcement()
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.6, 1
+                spacing: '15dp'
+                padding: '10dp'
+                md_bg_color: app.theme['secondary']
+                radius: 5
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    adaptive_height: True
+                    MyLabel:
+                        text: 'Announcement'
+                        color: app.theme['accent']
+                        font_size: '20dp'
+                        bold: True
+                    MDIconButton:
+                        icon: 'refresh'
+                        md_bg_color: app.theme['green']
+                        size_hint: None, 1
+                        theme_icon_color: 'Custom'
+                        icon_color: 1, 1, 1, 1
+                        width: self.height
+                        on_press: root.get_announcements()
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint: 1, 1
+                    padding: '10dp'
+                    spacing: '5dp'
+                    ScrollView:
+                        size_hint: 1, 1
+                        MDBoxLayout:
+                            id: container
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            size_hint_x: 1
+                            spacing: '10dp'
+
+<AnnouncementComponent>:
+    md_bg_color: app.theme['tertiary']
+    adaptive_height: True
+    orientation: 'vertical'
+    padding: '10dp'
+    radius: 5
+    MDBoxLayout:
+        orientation: 'horizontal'
+        adaptive_height: True
+        MyLabel:
+            id: title
+            text: 'This is the Title'
+            color: 1, 1, 1, 1
+            bold: True
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 0.4, 1
+            MDLabel:
+                id: date
+                text: '30/05/2025'
+                color: 1, 1, 1, 1
+                size_hint: None, 1
+                width: self.text_size[0] 
+                bold: True
+            MDIconButton:
+                icon: 'delete'
+                size_hint_y: 1
+                width: self.height
+                theme_icon_color: 'Custom'
+                icon_color: app.theme['accent']
+                on_press: root.delete()
+    MDBoxLayout:
+        size_hint: 1, None
+        height: '1dp'
+        md_bg_color: 1, 1, 1, 1
+    MyLabel:
+        id: details
+        text: 'details details details'
+        color: 1, 1, 1, 1

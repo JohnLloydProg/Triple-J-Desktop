@@ -1,0 +1,65 @@
+<MainScreen>:
+    MDAnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        size_hint: 1, 1
+        md_bg_color: app.theme['primary']
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_height: True
+            size_hint_x: 0.8
+            size_hint_max_x: 700
+            spacing: 50
+            md_bg_color: app.theme['secondary']
+            padding: '25dp'
+            radius: 10
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: '20dp'
+                adaptive_height: True
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    size_hint_x: 1
+                    MyLabel:
+                        text: 'Username'
+                        color: app.theme['accent']
+                        padding: [15, 0, 0, 0]
+                        bold: True
+                    MDTextField:
+                        id: username
+                        mode: 'round'
+                        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                        fill_color_normal: app.theme['tertiary']
+                        line_color_normal: app.theme['tertiary']
+                        line_color_focus: app.theme['accent']
+                        text_color_normal: 1, 1, 1, 1
+                        text_color_focus: 1, 1, 1, 1
+                        size_hint_x: 1
+                        hint_text: 'Enter your username'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    size_hint_x: 1
+                    MyLabel:
+                        text: 'Password'
+                        padding: [15, 0, 0, 0]
+                        color: app.theme['accent']
+                        bold: True
+                    MDTextField:
+                        id: password
+                        password: True
+                        mode: 'round'
+                        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                        fill_color_normal: app.theme['tertiary']
+                        line_color_normal: app.theme['tertiary']
+                        line_color_focus: app.theme['accent']
+                        text_color_normal: 1, 1, 1, 1
+                        text_color_focus: 1, 1, 1, 1
+                        size_hint_x: 1
+                        hint_text: 'Enter your password'
+            MDFillRoundFlatButton:
+                text: "Login"
+                md_bg_color: app.theme['violet']
+                size_hint_x: 1
+                on_press: root.login()

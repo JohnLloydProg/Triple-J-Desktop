@@ -1,0 +1,255 @@
+<MemberScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme['primary']
+        padding: '15dp'
+        spacing: '20dp'
+        NavigationBar:
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 1
+            spacing: '10dp'
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.4, 1
+                size_hint_max_x: '400dp'
+                spacing: 20
+                MDAnchorLayout:
+                    id: detail_container
+                    anchor_x: 'center'
+                    anchor_y: 'top'
+                    md_bg_color: app.theme['secondary']
+                    size_hint: 1, 1
+                    padding: '20dp'
+                    radius: 5
+                    MemberDetail:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.7, 1
+                spacing: '15dp'
+                padding: '10dp'
+                md_bg_color: app.theme['secondary']
+                radius: 5
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    adaptive_height: True
+                    spacing: '10dp'
+                    MDTextField:
+                        mode: 'round'
+                        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                        fill_color_normal: app.theme['tertiary']
+                        line_color_normal: app.theme['tertiary']
+                        line_color_focus: app.theme['accent']
+                        text_color_normal: 1, 1, 1, 1
+                        text_color_focus: 1, 1, 1, 1
+                        on_text: root.search(self.text)
+                        on_text_validate: root.search(self.text, True)
+                        hint_text: 'Search details here...'
+                    MDBoxLayout:
+                    MDIconButton:
+                        icon: 'refresh'
+                        md_bg_color: app.theme['green']
+                        size_hint: None, 1
+                        theme_icon_color: 'Custom'
+                        icon_color: 1, 1, 1, 1
+                        width: self.height
+                        on_press: root.get_members()
+                ScrollView:
+                    size_hint: 1, 1
+                    MDStackLayout:
+                        id: container
+                        adaptive_height: True
+                        size_hint_x: 1
+                        spacing: '10dp'
+
+<MemberComponent>:
+    style: 'elevated'
+    md_bg_color: app.theme['tertiary']
+    adaptive_height: True
+    size_hint_x: None
+    width: '300dp'
+    padding: '10dp'
+    theme_shadow_color: "Custom"
+    shadow_color: app.theme['accent']
+    theme_bg_color: "Custom"
+    theme_shadow_offset: "Custom"
+    shadow_offset: (3, -4)
+    theme_shadow_softness: "Custom"
+    shadow_softness: 2
+    theme_elevation_level: "Custom"
+    elevation_level: 2
+    MDBoxLayout:
+        orientation: 'vertical'
+        adaptive_height: True
+        spacing: '5dp'
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: '10dp'
+            adaptive_height: True
+            MDFloatLayout:
+                size_hint: None, 1
+                width: '40dp'
+                MDIcon:
+                    icon: 'account'
+                    font_size: '40dp'
+                    color: app.theme['accent']
+                    pos_hint: {"center_x": 0.5, "center_y": .5}
+            MyLabel:
+                id: username
+                text: 'username'
+                color: 1, 1, 1, 1
+                font_size: '20dp'
+                bold: True
+        MDBoxLayout:
+            size_hint: 1, None
+            height: 1
+            md_bg_color: 1, 1, 1, 1
+        MyLabel:
+            id: fullname
+            text: '[b]Full Name:[/b]'
+            color: 1, 1, 1, 1
+            font_size: '15dp'
+            size_hint_x: 1
+            markup: True
+        MyLabel:
+            id: email
+            text: '[b]Email:[/b]'
+            color: 1, 1, 1, 1
+            font_size: '15dp'
+            markup: True
+        MyLabel:
+            id: birthdate
+            text: '[b]Birthdate:[/b]'
+            color: 1, 1, 1, 1
+            font_size: '15dp'
+            markup: True
+
+
+<MemberDetail>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '15dp'
+    MDBoxLayout:
+        orientation: 'vertical'
+        adaptive_height: True
+        spacing: '5dp'
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: '10dp'
+            adaptive_height: True
+            MDFloatLayout:
+                size_hint: None, 1
+                width: '40dp'
+                MDIcon:
+                    icon: 'account'
+                    font_size: '40dp'
+                    color: 1, 1, 1, 1
+                    pos_hint: {"center_x": 0.5, "center_y": .5}
+            MyLabel:
+                text: 'Customer Details'
+                font_size: '20dp'
+                color: 1, 1, 1, 1
+                bold: True
+        MDBoxLayout:
+            size_hint: 1, None
+            height: '1dp'
+            md_bg_color: 1, 1, 1, 1
+        MyLabel:
+            id: username
+            text: '[b]Username:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: first_name
+            text: '[b]First Name:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: last_name
+            text: '[b]Last Name:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: email
+            text: '[b]Email:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: birthDate
+            text: '[b]Birthdate:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: height
+            text: '[b]Height:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: weight
+            text: '[b]Weight:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: mobileNumber
+            text: '[b]Mobile Number:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: address
+            text: '[b]Address:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: gymTrainer
+            text: '[b]Gym Trainer:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: sex
+            text: '[b]Sex:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+    MDBoxLayout:
+        orientation: 'vertical'
+        adaptive_height: True
+        spacing: '5dp'
+        MyLabel:
+            text: 'Membership Details'
+            font_size: '20dp'
+            color: 1, 1, 1, 1
+            bold: True
+        MDBoxLayout:
+            size_hint: 1, None
+            height: '1dp'
+            md_bg_color: 1, 1, 1, 1
+        MyLabel:
+            id: membershipType
+            text: '[b]Membership Type:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: startDate
+            text: '[b]Start Date:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        MyLabel:
+            id: expirationDate
+            text: '[b]Expiration Date:[/b] '
+            font_size: '17dp'
+            color: 1, 1, 1, 1
+            markup: True
+        
+        

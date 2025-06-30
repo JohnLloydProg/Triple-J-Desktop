@@ -1,0 +1,221 @@
+<AnalyticsScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme['primary']
+        padding: '15dp'
+        spacing: '20dp'
+        NavigationBar:
+        ScrollView:
+            size_hint: 1, 1
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                spacing: '15dp'
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    adaptive_height: True
+                    spacing: '10dp'
+                    MyLabel:
+                        text: 'Active Members:'
+                        font_size: '25dp'
+                        color: app.theme['accent']
+                        halign: 'right'
+                        bold: True
+                    MyLabel:
+                        id: member_number
+                        text: '0 Members'
+                        font_size: '25dp'
+                        color: 1, 1, 1, 1
+                        halign: 'left'
+                        bold: True
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    padding: '20dp'
+                    spacing: '15dp'
+                    md_bg_color: app.theme['secondary']
+                    radius: 5
+                    MyLabel:
+                        text: 'Members Report'
+                        font_size: '20dp'
+                        color: app.theme['accent']
+                        bold: True
+                        halign: 'center'
+                    BoxLayout:
+                        id: pie_charts
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: 0.4*self.width
+                MDBoxLayout:
+                    id: months_container
+                    orientation: 'horizontal'
+                    adaptive_height: True
+                    spacing: '5dp'
+                    padding: '10dp'
+                    radius: 5
+                    md_bg_color: app.theme['secondary']
+                    MDFillRoundFlatButton:
+                        text: "Jan"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Feb"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Mar"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Apr"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "May"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Jun"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Jul"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Aug"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Sep"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Oct"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Nov"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                    MDFillRoundFlatButton:
+                        text: "Dec"
+                        md_bg_color: app.theme['tertiary']
+                        on_press: root.select_month(self.text)
+                        size_hint_x: 1
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: '20dp'
+                    spacing: '15dp'
+                    md_bg_color: app.theme['secondary']
+                    radius: 5
+                    adaptive_height: True
+                    MyLabel:
+                        text: 'Activity Report'
+                        halign: 'center'
+                        color: app.theme['accent']
+                        font_size: '20dp'
+                        bold: True
+                    BoxLayout:
+                        id: hours_chart
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: 0.4*self.width
+                    BoxLayout:
+                        id: days_chart
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: 0.4*self.width
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    padding: '20dp'
+                    spacing: '15dp'
+                    radius: 5
+                    md_bg_color: app.theme['secondary']
+                    MyLabel:
+                        text: 'Sales Report'
+                        halign: 'center'
+                        color: app.theme['accent']
+                        font_size: '20dp'
+                        bold: True
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        adaptive_height: True
+                        spacing: '10dp'
+                        MyLabel:
+                            text: 'Date'
+                            halign: 'center'
+                            font_size: '15dp'
+                            color: app.theme['accent']
+                            bold: True
+                        MyLabel:
+                            text: 'Amount'
+                            halign: 'center'
+                            font_size: '15dp'
+                            color: app.theme['accent']
+                            bold: True
+                        MyLabel:
+                            text: 'Description'
+                            halign: 'center'
+                            font_size: '15dp'
+                            color: app.theme['accent']
+                            bold: True
+                        MyLabel:
+                            text: 'Receipt No.'
+                            halign: 'center'
+                            font_size: '15dp'
+                            color: app.theme['accent']
+                            bold: True
+                    MDBoxLayout:
+                        size_hint_y: None
+                        height: 0.4*self.width
+                        md_bg_color: app.theme['tertiary']
+                        padding: [0, 10, 0, 10]
+                        radius: 5
+                        ScrollView:
+                            MDBoxLayout:
+                                id: sales_container
+                                orientation: 'vertical'
+                                adaptive_height: True
+                                spacing: '10dp'
+
+<SalesComponent>:
+    orientation: 'horizontal'
+    adaptive_height: True
+    spacing: '10dp'
+    MyLabel:
+        id: date
+        text: '2023-01-01'
+        color: 1, 1, 1, 1
+        halign: 'center'
+        font_size: '15dp'
+    MyLabel:
+        id: amount
+        text: '200.00'
+        color: 1, 1, 1, 1
+        halign: 'center'
+        font_size: '15dp'
+    MyLabel:
+        id: description
+        text: 'Hotdog'
+        color: 1, 1, 1, 1
+        halign: 'center'
+        font_size: '15dp'
+    MyLabel:
+        id: receipt_no
+        text: '012310123'
+        color: 1, 1, 1, 1
+        halign: 'center'
+        font_size: '15dp'

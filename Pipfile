@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+kivy = "*"
+kivymd = "*"
+"kivy-garden.graph" = "*"
+kivy-garden = "*"
+matplotlib = "*"
+"kivy-garden.matplotlib" = "*"
+setuptools = "*"
+numpy = "*"
+pyinstaller = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

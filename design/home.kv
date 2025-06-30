@@ -1,0 +1,288 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme['primary']
+        padding: '15dp'
+        spacing: '20dp'
+        NavigationBar:
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 1
+            spacing: '10dp'
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.4, 1
+                spacing: 20
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    md_bg_color: app.theme['secondary']
+                    padding: '20dp'
+                    spacing: '15dp'
+                    adaptive_height: True
+                    radius: 5
+                    MyLabel:
+                        text: 'Validate an Email'
+                        halign: 'center'
+                        font_size: '20dp'
+                        color: app.theme['accent']
+                        bold: True
+                    MDTextField:
+                        id: email
+                        mode: 'round'
+                        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+                        fill_color_normal: app.theme['tertiary']
+                        line_color_normal: app.theme['tertiary']
+                        line_color_focus: app.theme['accent']
+                        text_color_normal: 1, 1, 1, 1
+                        text_color_focus: 1, 1, 1, 1
+                        size_hint_x: 1
+                        hint_text: 'Enter your email address'
+                    MDFillRoundFlatButton:
+                        text: "Register Email"
+                        md_bg_color: app.theme['violet']
+                        size_hint_x: 1
+                        on_press: root.register_email(email.text)
+                MDAnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'top'
+                    md_bg_color: app.theme['secondary']
+                    size_hint: 1, 1
+                    padding: '20dp'
+                    radius: 5
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        spacing: '5dp'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            spacing: '5dp'
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                spacing: '10dp'
+                                adaptive_height: True
+                                MDFloatLayout:
+                                    size_hint: None, 1
+                                    width: '40dp'
+                                    MDIcon:
+                                        icon: 'account'
+                                        font_size: '40dp'
+                                        color: 1, 1, 1, 1
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                MyLabel:
+                                    text: 'Customer Details'
+                                    font_size: '20dp'
+                                    color: 1, 1, 1, 1
+                                    bold: True
+                            MDBoxLayout:
+                                size_hint: 1, None
+                                height: '1dp'
+                                md_bg_color: 1, 1, 1, 1
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: '5dp'
+                            adaptive_height: True
+                            MyLabel:
+                                text: 'Name'
+                                font_size: '17dp'
+                                color: 1, 1, 1, 1
+                                bold: True
+                            MyLabel:
+                                id: member_name
+                                text: ''
+                                color: app.theme['green']
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: '5dp'
+                            adaptive_height: True
+                            MyLabel:
+                                text: 'Membership Type'
+                                font_size: '17dp'
+                                color: 1, 1, 1, 1
+                                bold: True
+                            MyLabel:
+                                id: membership_type
+                                text: ''
+                                color: app.theme['green']
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: '5dp'
+                            adaptive_height: True
+                            MyLabel:
+                                text: 'Membership Expiry'
+                                font_size: '17dp'
+                                color: 1, 1, 1, 1
+                                bold: True
+                            MyLabel:
+                                id: membership_expiry
+                                text: ''
+                                color: app.theme['green']
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: '5dp'
+                            adaptive_height: True
+                            MyLabel:
+                                text: 'Time In:'
+                                font_size: '17dp'
+                                color: 1, 1, 1, 1
+                                bold: True
+                            MyLabel:
+                                id: time_in
+                                text: ''
+                                color: app.theme['green']
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: '5dp'
+                            adaptive_height: True
+                            MyLabel:
+                                text: 'Time Out'
+                                font_size: '17dp'
+                                color: 1, 1, 1, 1
+                                bold: True
+                            MyLabel:
+                                id: time_out
+                                text: ''
+                                color: app.theme['green']
+                MDFillRoundFlatButton:
+                    text: 'Add Sales Record'
+                    size_hint_x: 1
+                    color: 0, 0, 0, 1
+                    md_bg_color: app.theme['green']
+                    on_press: root.add_sales_record()
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.6, 1
+                spacing: '15dp'
+                padding: '10dp'
+                md_bg_color: app.theme['secondary']
+                radius: 5
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    adaptive_height: True
+                    MyLabel:
+                        text: 'Customer Attendance'
+                        color: app.theme['accent']
+                        font_size: '20dp'
+                        bold: True
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        adaptive_width: True
+                        spacing: '10dp'
+                        MDFillRoundFlatButton:
+                            id: date_btn
+                            text: '09/25/2025'
+                            md_bg_color: app.theme['violet']
+                            on_press: root.open_menu()
+                        MDIconButton:
+                            icon: 'refresh'
+                            md_bg_color: app.theme['green']
+                            size_hint: None, 1
+                            theme_icon_color: 'Custom'
+                            icon_color: 1, 1, 1, 1
+                            width: self.height
+                            on_press: root.get_attendances()
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint: 1, 1
+                    padding: '10dp'
+                    spacing: '5dp'
+                    md_bg_color: app.theme['tertiary']
+                    radius: 5
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        adaptive_height: True
+                        MyLabel:
+                            text: 'Username'
+                            color: 1, 1, 1, 1
+                            bold: True
+                            font_size: '15dp'
+                            halign: 'center'
+                        MyLabel:
+                            text: 'Time In'
+                            color: 1, 1, 1, 1
+                            bold: True
+                            font_size: '15dp'
+                            halign: 'center'
+                        MyLabel:
+                            text: 'Time Out'
+                            color: 1, 1, 1, 1
+                            bold: True
+                            font_size: '15dp'
+                            halign: 'center'
+                    MDBoxLayout:
+                        size_hint_y: None
+                        height: '1dp'
+                        md_bg_color: 1, 1, 1, 1
+                    ScrollView:
+                        size_hint: 1, 1
+                        MDBoxLayout:
+                            id: container
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            size_hint_x: 1
+
+
+<SalesRecordContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    padding: '30dp'
+    spacing: '10dp'
+    MDTextField:
+        id: amount
+        required: True
+        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+        hint_text_color_focus: app.theme['accent']
+        fill_color_normal: app.theme['tertiary']
+        line_color_normal: app.theme['tertiary']
+        line_color_focus: app.theme['accent']
+        text_color_normal: 1, 1, 1, 1
+        text_color_focus: 1, 1, 1, 1
+        size_hint_x: 1
+        hint_text: 'Enter the amount'
+    MDTextField:
+        id: receipt
+        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+        hint_text_color_focus: app.theme['accent']
+        fill_color_normal: app.theme['tertiary']
+        line_color_normal: app.theme['tertiary']
+        line_color_focus: app.theme['accent']
+        text_color_normal: 1, 1, 1, 1
+        text_color_focus: 1, 1, 1, 1
+        size_hint_x: 1
+        hint_text: 'Enter the receipt number (Optional)'
+    MDTextField:
+        id: description
+        hint_text_color_normal: 0.8, 0.8, 0.8, 1
+        hint_text_color_focus: app.theme['accent']
+        fill_color_normal: app.theme['tertiary']
+        line_color_normal: app.theme['tertiary']
+        line_color_focus: app.theme['accent']
+        text_color_normal: 1, 1, 1, 1
+        text_color_focus: 1, 1, 1, 1
+        size_hint_x: 1
+        multiline: True
+        hint_text: 'Enter a description (Optional)'
+
+
+
+<AttendanceComponent>:
+    orientation: 'horizontal'
+    adaptive_height: True
+    size_hint_x: 1
+    padding: [0, 10, 0, 10]
+    radius: 5
+    MyLabel:
+        id: username
+        text: 'Username'
+        color: (1, 1, 1, 1)
+        halign: 'center'
+    MyLabel:
+        id: timeIn
+        text: 'TimeIn'
+        color: (1, 1, 1, 1)
+        halign: 'center'
+    MyLabel:
+        id: timeOut
+        text: 'TimeOut'
+        color: (1, 1, 1, 1)
+        halign: 'center'

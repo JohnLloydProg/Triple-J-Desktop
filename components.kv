@@ -1,0 +1,54 @@
+<MyLabel@MDLabel>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1] + 10
+
+<NavigationBar@MDBoxLayout>:
+    orientation: 'horizontal'
+    size_hint_x: 1
+    adaptive_height: True
+    md_bg_color: app.theme['secondary']
+    padding: '10dp'
+    radius: 5
+    MyLabel:
+        text: 'TRIPLE J SYSTEMS'
+        font_size: '20dp'
+        color: app.theme['accent']
+        bold: True
+        size_hint_x: 1
+    MDBoxLayout:
+        orientation: 'horizontal'
+        adaptive_width: True
+        spacing: '10dp'
+        size_hint_y: 1
+        MDFillRoundFlatButton:
+            md_bg_color: app.theme['green'] if app.sm.current != 'home_screen' else app.theme['violet'] 
+            text: 'Home'
+            on_press: app.sm.current = 'home_screen'
+        MDFillRoundFlatButton:
+            md_bg_color: app.theme['green'] if app.sm.current != 'member_screen' else app.theme['violet'] 
+            text: 'Members'
+            on_press: app.sm.current = 'member_screen' 
+        MDFillRoundFlatButton:
+            md_bg_color: app.theme['green'] if app.sm.current != 'analytics_screen' else app.theme['violet'] 
+            text: 'Analytics'
+            on_press: app.sm.current = 'analytics_screen'
+        MDFillRoundFlatButton:
+            md_bg_color: app.theme['green'] if app.sm.current != 'announcement_screen' else app.theme['violet'] 
+            text: 'Announcements'
+            on_press: app.sm.current = 'announcement_screen'
+        MDFillRoundFlatButton:
+            md_bg_color: app.theme['accent']
+            text: 'Logout'
+            on_press: app.log_out()
+
+
+<SpinnerContent>:
+    size_hint: None, None
+    size: '60dp', '60dp'
+    anchor_x: 'center'
+    anchor_y: 'center'
+    MDSpinner:
+        active: True
+        size_hint: None, None
+        size: '46dp', '46dp'
