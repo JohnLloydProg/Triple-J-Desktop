@@ -91,10 +91,21 @@
                         bold: True
                         halign: 'center'
                     BoxLayout:
-                        id: pie_charts
-                        orientation: 'horizontal'
+                        orientation: 'vertical'
                         size_hint_y: None
                         height: 0.4*self.width
+                        KivyMatplotNavToolbar:
+                            nav_icon:'all'
+                            hover_mode:'desktop'
+                            show_cursor_data:True
+                            figure_wgt:pie_charts
+                        MatplotFigureSubplot:
+                            id: pie_charts
+                            draw_all_axes: True
+                            interactive_axis: True
+                            max_hover_rate: 5 /60
+                            min_max_option:True
+                            auto_cursor: True
                 MDBoxLayout:
                     id: months_container
                     orientation: 'horizontal'
@@ -177,15 +188,37 @@
                         font_size: '20dp'
                         bold: True
                     BoxLayout:
-                        id: hours_chart
-                        orientation: 'horizontal'
+                        orientation: 'vertical'
                         size_hint_y: None
                         height: 0.4*self.width
+                        KivyMatplotNavToolbar:
+                            nav_icon:'all'
+                            hover_mode:'desktop'
+                            show_cursor_data:True
+                            figure_wgt:hours_chart
+                        MatplotFigureSubplot:
+                            id: hours_chart
+                            draw_all_axes: True
+                            interactive_axis: True
+                            max_hover_rate: 5 /60
+                            min_max_option:True
+                            auto_cursor: True
                     BoxLayout:
-                        id: days_chart
-                        orientation: 'horizontal'
+                        orientation: 'vertical'
                         size_hint_y: None
                         height: 0.4*self.width
+                        KivyMatplotNavToolbar:
+                            nav_icon:'all'
+                            hover_mode:'desktop'
+                            show_cursor_data:True
+                            figure_wgt:days_chart
+                        MatplotFigureSubplot:
+                            id: days_chart
+                            draw_all_axes: True
+                            interactive_axis: True
+                            max_hover_rate: 5 /60
+                            min_max_option:True
+                            auto_cursor: True
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_height: True

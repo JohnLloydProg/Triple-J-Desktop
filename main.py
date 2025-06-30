@@ -14,6 +14,7 @@ from controller.analytics_screen import AnalyticsScreen
 from controller.member_screen import MemberScreen
 from kivy.network.urlrequest import UrlRequestUrllib
 from tools import GeneralRequest
+import kivy_matplotlib_widget
 import json
 import sys
 import os

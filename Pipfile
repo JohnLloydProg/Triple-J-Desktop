@@ -13,6 +13,7 @@ matplotlib = "*"
 setuptools = "*"
 numpy = "*"
 pyinstaller = "*"
+kivy-matplotlib-widget = "*"
 
 [dev-packages]
 

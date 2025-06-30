@@ -1,16 +1,21 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivy_garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from kivy.network.urlrequest import UrlRequestUrllib
 from tkinter.filedialog import asksaveasfilename
 import matplotlib.pyplot as plt
 from kivy.app import App
 from tools import GeneralRequest
 from datetime import date
+from kivy_matplotlib_widget.uix.hover_widget import add_hover
+from matplotlib.ticker import FormatStrFormatter
 import os
 
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+hours12 = [
+    '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM',
+    '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
+]
 routines = {'L': 'Lower', 'C': 'Core', 'U': 'Upper', 'PS': 'Push', 'PL': 'Pull'}
 
 
@@ -79,7 +84,7 @@ class AnalyticsScreen(MDScreen):
         axis[1].set_title('Memberships')
         axis[2].pie(workouts_x, labels=workouts_labels)
         axis[2].set_title('Workouts')
-        self.ids.pie_charts.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.ids.pie_charts.figure = figure
         plt.figure()
 
         self.ids.member_number.text = f'[color=#ea4444]Active Members:[/color] [color=#ffffff]{str(result.get('number'))} Members[/color]'
@@ -98,17 +103,24 @@ class AnalyticsScreen(MDScreen):
         hours = result.get('hours')
         days = result.get('days')
 
-        plt.xlim(-1, 24)
-        plt.ylim(0, max(hours.values()) + 1)
-        plt.plot(hours.keys(), hours.values())
-        plt.title('Peak Hours')
-        self.ids.hours_chart.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        fig, axis = plt.subplots(1, 1)
+        axis.set_xlim(-1, 24)
+        axis.set_ylim(0, max(hours.values()) + 1)
+        line, = axis.plot(list(map(lambda day: hours12[int(day)], hours.keys())), hours.values(), label='Hour')
+        axis.set_title('Peak Hours')
+        self.ids.hours_chart.figure = fig
+        self.ids.hours_chart.register_lines([line])
+        add_hover(self.ids.hours_chart, mode='desktop')
         plt.figure()
-        plt.xlim(-1, 7)
-        plt.ylim(0, max(days.values()) + 1)
-        plt.plot(list(map(lambda day: week[int(day)], days.keys())), days.values())
-        plt.title('Peak Days')
-        self.ids.days_chart.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
+        fig, axis = plt.subplots(1, 1)
+        axis.set_xlim(-1, 7)
+        axis.set_ylim(0, max(days.values()) + 1)
+        line, = axis.plot(list(map(lambda day: week[int(day)], days.keys())), days.values())
+        axis.set_title('Peak Days')
+        self.ids.days_chart.figure = fig
+        self.ids.days_chart.register_lines([line])
+        add_hover(self.ids.days_chart, mode='desktop')
         plt.figure()
     
     def get_sales_data(self):

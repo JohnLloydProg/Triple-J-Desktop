@@ -13,6 +13,24 @@ import json
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novermber', 'December']
 
 
+def convert12h(time:str):
+    if (time):
+        timeIn:list[str] = time.split(':')
+        timeIn_hour = int(timeIn[0])
+        if 0 <= timeIn_hour <= 11 :
+            period = 'AM'
+            if timeIn_hour == 0:
+                timeIn_hour = 12
+        elif 12 <=timeIn_hour <= 23:
+            period = 'PM'
+            if timeIn_hour > 12:
+                timeIn_hour -= 12
+        time_str = f'{str(timeIn_hour)}:{timeIn[1]}:{timeIn[2]} {period}'
+    else:
+        time_str = 'Not Found'
+    return time_str
+
+
 class HomeScreen(MDScreen):
     sales_dialog:MDDialog = None
     dialog:MDDialog = None
@@ -33,8 +51,8 @@ class HomeScreen(MDScreen):
     def got_attendances(self, request:UrlRequestUrllib, result:dict):
         self.ids.container.clear_widgets()
         for attendance in result:
-            attendanceComponent = AttendanceComponent()
-            attendanceComponent.set_details(username=attendance.get('member', "Not found"), timeIn=attendance.get('timeIn', "Not Found"), timeOut=attendance.get('timeOut', "Not Found"), root=self)
+            attendanceComponent = AttendanceComponent()    
+            attendanceComponent.set_details(username=attendance.get('member', "Not found"), timeIn=convert12h(attendance.get('timeIn')), timeOut=convert12h(attendance.get('timeOut')), root=self)
             self.ids.container.add_widget(attendanceComponent)
     
     def open_menu(self):
