@@ -1,11 +1,13 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy_garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+from kivy.network.urlrequest import UrlRequestUrllib
+from tkinter.filedialog import asksaveasfilename
 import matplotlib.pyplot as plt
 from kivy.app import App
 from tools import GeneralRequest
 from datetime import date
-import numpy as np
+import os
 
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -26,6 +28,22 @@ class AnalyticsScreen(MDScreen):
         )
         self.get_activity_data()
         self.get_sales_data()
+    
+    def generate_report(self, sales_box, attendance_box, activity_box):
+        GeneralRequest(
+            self.app.base_url + f'api/analytics/report/{str(months.index(self.month)+1)}?sales-report={sales_box}&attendance-report={attendance_box}&busy-activity={activity_box}',
+            req_headers={"Content-Type" : "application/json",'Authorization': f'Bearer {self.app.access}'},
+            on_success=self.download_file, refresh=self.app.refresh
+        )
+    
+    def download_file(self, request:UrlRequestUrllib, result):
+        print(request.resp_headers.get('content-disposition'))
+        file:str = request.resp_headers.get('content-disposition')
+        file = file[file.index('"')+1:file.index('.pdf')].replace('.', '-').replace(':', '-')
+        name = asksaveasfilename(defaultextension='.pdf', initialdir=os.path.expanduser('~'), filetypes=[('PDF Files', '*.pdf')], initialfile=file)
+        name += '.pdf' if '.pdf' not in name else ''
+        with open(name, 'wb') as f:
+            f.write(result)
     
     def got_members_data(self, request, result):
         self.ids.pie_charts.clear_widgets()
@@ -64,7 +82,7 @@ class AnalyticsScreen(MDScreen):
         self.ids.pie_charts.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         plt.figure()
 
-        self.ids.member_number.text = f'{str(result.get('number'))} Members'
+        self.ids.member_number.text = f'[color=#ea4444]Active Members:[/color] [color=#ffffff]{str(result.get('number'))} Members[/color]'
     
     def get_activity_data(self):
         GeneralRequest(

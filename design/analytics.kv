@@ -14,20 +14,69 @@
                 MDBoxLayout:
                     orientation: 'horizontal'
                     adaptive_height: True
-                    spacing: '10dp'
-                    MyLabel:
-                        text: 'Active Members:'
-                        font_size: '25dp'
-                        color: app.theme['accent']
-                        halign: 'right'
-                        bold: True
+                    padding: '10dp'
                     MyLabel:
                         id: member_number
-                        text: '0 Members'
+                        text: '[color=#ea4444]Active Members:[/color]'
                         font_size: '25dp'
-                        color: 1, 1, 1, 1
                         halign: 'left'
                         bold: True
+                        markup: True
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        adaptive_size: True
+                        spacing: '10dp'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            adaptive_width: True
+                            MDCheckbox:
+                                id: sales_box
+                                size_hint: None, 1
+                                width: self.height
+                                color_active: app.theme['accent']
+                                color_inactive: 1, 1, 1, 1
+                            MyLabel:
+                                text: 'Sales Report'
+                                valign: 'center'
+                                color: 1, 1, 1, 1
+                                size_hint: None, 1
+                                width: '90dp'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            adaptive_width: True
+                            MDCheckbox:
+                                id: attendance_box
+                                size_hint: None, 1
+                                width: self.height
+                                color_active: app.theme['accent']
+                                color_inactive: 1, 1, 1, 1
+                            MyLabel:
+                                text: 'Attendance Report'
+                                valign: 'center'
+                                color: 1, 1, 1, 1
+                                size_hint: None, 1
+                                width: '130dp'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            adaptive_width: True
+                            MDCheckbox:
+                                id: activity_box
+                                size_hint: None, 1
+                                width: self.height
+                                color_active: app.theme['accent']
+                                color_inactive: 1, 1, 1, 1
+                            MyLabel:
+                                text: 'Activity Report'
+                                valign: 'center'
+                                color: 1, 1, 1, 1
+                                size_hint: None, 1
+                                width: '120dp'
+                        MDFillRoundFlatButton:
+                            text: "Generate Report"
+                            md_bg_color: app.theme['violet']
+                            on_press: root.generate_report(sales_box.active, attendance_box.active, activity_box.active)
+                            size_hint_y: None
+                            height: '70dp'
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_height: True
