@@ -93,12 +93,18 @@
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
-                        height: 0.4*self.width
-                        KivyMatplotNavToolbar:
-                            nav_icon:'all'
-                            hover_mode:'desktop'
-                            show_cursor_data:True
-                            figure_wgt:pie_charts
+                        height: 0.5*self.width
+                        AnchorLayout:
+                            anchor_x: 'right'
+                            anchor_y: 'center'
+                            size_hint_y: None
+                            height: '70dp'
+                            MDFillRoundFlatButton:
+                                text: "Save Chart"
+                                md_bg_color: app.theme['green']
+                                on_press: root.save_chart(pie_charts)
+                                size_hint_y: None
+                                height: '70dp'
                         MatplotFigureSubplot:
                             id: pie_charts
                             draw_all_axes: True
@@ -190,12 +196,18 @@
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
-                        height: 0.4*self.width
-                        KivyMatplotNavToolbar:
-                            nav_icon:'all'
-                            hover_mode:'desktop'
-                            show_cursor_data:True
-                            figure_wgt:hours_chart
+                        height: 0.5*self.width
+                        AnchorLayout:
+                            anchor_x: 'right'
+                            anchor_y: 'center'
+                            size_hint_y: None
+                            height: '70dp'
+                            MDFillRoundFlatButton:
+                                text: "Save Chart"
+                                md_bg_color: app.theme['green']
+                                on_press: root.save_chart(hours_chart)
+                                size_hint_y: None
+                                height: '70dp'
                         MatplotFigureSubplot:
                             id: hours_chart
                             draw_all_axes: True
@@ -206,12 +218,18 @@
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
-                        height: 0.4*self.width
-                        KivyMatplotNavToolbar:
-                            nav_icon:'all'
-                            hover_mode:'desktop'
-                            show_cursor_data:True
-                            figure_wgt:days_chart
+                        height: 0.5*self.width
+                        AnchorLayout:
+                            anchor_x: 'right'
+                            anchor_y: 'center'
+                            size_hint_y: None
+                            height: '70dp'
+                            MDFillRoundFlatButton:
+                                text: "Save Chart"
+                                md_bg_color: app.theme['green']
+                                on_press: root.save_chart(days_chart)
+                                size_hint_y: None
+                                height: '70dp'
                         MatplotFigureSubplot:
                             id: days_chart
                             draw_all_axes: True

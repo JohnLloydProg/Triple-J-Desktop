@@ -8,13 +8,18 @@ from typing import Callable
 import json
 
 class GeneralRequest:
+    dialog:ModalView = None
+    requests:list = []
+
     def __init__(self, url:str, req_body:str=None, req_headers:dict=None, on_success:Callable=None, refresh:str=None, on_finish:Callable=None):
         self.own_finish = on_finish
         self.refresh = refresh
         UrlRequest(url, req_body=req_body, req_headers=req_headers, on_success=on_success, on_finish=lambda request: self.on_finish(request))
-        self.dialog = ModalView(background = '', background_color = (0, 0, 0, 0))
-        self.dialog.add_widget(MDSpinner(active=True, size_hint=(None, None), size=(dp(46), dp(46)), line_width = dp(3.3), palette=[[234/255, 68/255, 68/255, 1]]))
-        self.dialog.open()
+        GeneralRequest.requests.append(self)
+        if (not GeneralRequest.dialog):
+            GeneralRequest.dialog = ModalView(background = '', background_color = (0, 0, 0, 0))
+            GeneralRequest.dialog.add_widget(MDSpinner(active=True, size_hint=(None, None), size=(dp(46), dp(46)), line_width = dp(3.3), palette=[[234/255, 68/255, 68/255, 1]]))
+            GeneralRequest.dialog.open()
     
     def on_finish(self, request:UrlRequestUrllib):
         status = request.resp_status
@@ -32,7 +37,10 @@ class GeneralRequest:
         if (self.own_finish):
             self.own_finish(request)
         
-        self.dialog.dismiss()
+        GeneralRequest.requests.remove(self)
+        if (len(GeneralRequest.requests) == 0):
+            GeneralRequest.dialog.dismiss()
+            GeneralRequest.dialog = None
     
     def on_refresh(self, request:UrlRequestUrllib, result):
         app = App.get_running_app()

@@ -10,7 +10,7 @@ added_files = [
 
 imports = [
     'kivymd.uix.anchorlayout', 'kivymd.uix.scrollview', 'kivymd.uix.button', 'kivymd.uix.boxlayout', 'kivymd.uix.textfield', 'kivymd.uix.stacklayout',
-    'kivymd.uix.label'
+    'kivymd.uix.label', 'kivy_matplotlib_widget.uix.graph_subplot_widget'
 ]
 
 a = Analysis(

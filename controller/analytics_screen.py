@@ -1,5 +1,6 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivy_matplotlib_widget.uix.graph_subplot_widget import MatplotFigureSubplot
 from kivy.network.urlrequest import UrlRequestUrllib
 from tkinter.filedialog import asksaveasfilename
 import matplotlib.pyplot as plt
@@ -20,6 +21,7 @@ routines = {'L': 'Lower', 'C': 'Core', 'U': 'Upper', 'PS': 'Push', 'PL': 'Pull'}
 
 
 class AnalyticsScreen(MDScreen):
+    year = date.today().year
     month:str = months[date.today().month - 1]
     peak_done = False
 
@@ -36,7 +38,7 @@ class AnalyticsScreen(MDScreen):
     
     def generate_report(self, sales_box, attendance_box, activity_box):
         GeneralRequest(
-            self.app.base_url + f'api/analytics/report/{str(months.index(self.month)+1)}?sales-report={sales_box}&attendance-report={attendance_box}&busy-activity={activity_box}',
+            self.app.base_url + f'api/analytics/report/{str(self.year)}/{str(months.index(self.month)+1)}?sales-report={sales_box}&attendance-report={attendance_box}&busy-activity={activity_box}',
             req_headers={"Content-Type" : "application/json",'Authorization': f'Bearer {self.app.access}'},
             on_success=self.download_file, refresh=self.app.refresh
         )
@@ -91,7 +93,7 @@ class AnalyticsScreen(MDScreen):
     
     def get_activity_data(self):
         GeneralRequest(
-            self.app.base_url + f'api/analytics/peak/{str(months.index(self.month)+1)}', 
+            self.app.base_url + f'api/analytics/peak/{str(self.year)}/{str(months.index(self.month)+1)}', 
             req_headers={"Content-Type" : "application/json",'Authorization': f'Bearer {self.app.access}'},
             on_success=self.got_activity_data, refresh=self.app.refresh
         )
@@ -125,7 +127,7 @@ class AnalyticsScreen(MDScreen):
     
     def get_sales_data(self):
         GeneralRequest(
-            self.app.base_url + f'api/analytics/sales/{str(months.index(self.month)+1)}', 
+            self.app.base_url + f'api/analytics/sales/{str(self.year)}/{str(months.index(self.month)+1)}', 
             req_headers={"Content-Type" : "application/json",'Authorization': f'Bearer {self.app.access}'},
             on_success=self.got_sales_data, refresh=self.app.refresh
         )
@@ -154,6 +156,12 @@ class AnalyticsScreen(MDScreen):
                 btn.md_bg_color = self.app.theme['tertiary']
             else:
                 btn.md_bg_color = self.app.theme['green']
+    
+    def save_chart(self, chart:MatplotFigureSubplot):
+        file = asksaveasfilename(defaultextension='.png', initialdir=os.path.expanduser('~'), filetypes=[('PNG Files', '*.png')])
+        if (file):
+            chart.export_to_png(file)
+            print(f'Saved chart to {file}')
 
 
 class SalesComponent(MDBoxLayout):
