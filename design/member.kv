@@ -148,8 +148,8 @@
                     color: 1, 1, 1, 1
                     pos_hint: {"center_x": 0.5, "center_y": .5}
             MyLabel:
-                text: 'Customer Details'
-                font_size: '20dp'
+                text: 'Member Details'
+                font_size: '18dp'
                 color: 1, 1, 1, 1
                 bold: True
         MDBoxLayout:
@@ -226,11 +226,25 @@
         orientation: 'vertical'
         adaptive_height: True
         spacing: '5dp'
-        MyLabel:
-            text: 'Membership Details'
-            font_size: '20dp'
-            color: 1, 1, 1, 1
-            bold: True
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            spacing: '5dp'
+            MyLabel:
+                text: 'Membership Details'
+                font_size: '18dp'
+                color: 1, 1, 1, 1
+                bold: True
+            MyButton:
+                id: extend
+                text: 'Extend Subscription'
+                on_press: root.extend_subscription()
+                size_hint_y: None
+                height: '60dp'
+                md_bg_color: app.theme['violet']
+                on_enter: self.md_bg_color = app.theme['violet-darker']
+                on_leave: self.md_bg_color = app.theme['violet']
+                disabled: True
         MDBoxLayout:
             size_hint: 1, None
             height: '1dp'
@@ -253,5 +267,4 @@
             font_size: '17dp'
             color: 1, 1, 1, 1
             markup: True
-        
         

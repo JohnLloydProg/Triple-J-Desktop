@@ -2,6 +2,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.card import MDCard
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.anchorlayout import MDAnchorLayout
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.behaviors import HoverBehavior
 from kivy.clock import Clock
 from kivy.network.urlrequest import UrlRequestUrllib
@@ -80,7 +82,11 @@ class MemberComponent(MDCard, HoverBehavior):
 
 
 class MemberDetail(MDBoxLayout):
+    dialog:MDDialog = None
+
     def set_details(self, member_details:dict):
+        self.app = App.get_running_app()
+        self.member_details = member_details
         for key in member_details.keys():
             label = self.ids.get(key)
             detail = member_details.get(key)
@@ -92,3 +98,37 @@ class MemberDetail(MDBoxLayout):
             self.ids.startDate.text += membership.get('startDate')
             if (member_details.get('subscription')):
                 self.ids.expirationDate.text += membership.get('expirationDate')
+                self.ids.extend.disabled = False
+    
+    def extend_subscription(self):
+        if (not self.dialog):
+            self.dialog = MDDialog(
+                title="Membership Subscription Extension",
+                    text="Are you sure about extending this account's membership?",
+                    buttons=[
+                        MDFlatButton(
+                            text="Cancel",
+                            on_press=self.dialog_close
+                        ),
+                        MDRaisedButton(
+                            text="Confirm",
+                            on_press=self.run_request
+                        ),
+                    ],
+                )
+            self.dialog.open()
+    
+    def dialog_close(self, *args):
+        self.dialog.dismiss()
+        self.dialog = None
+    
+    def run_request(self, *args):
+        GeneralRequest(
+            self.app.base_url + f'api/account/membership/extension/{self.member_details.get('username')}',
+            req_body='',
+            req_headers={"Content-Type" : "application/json",'Authorization': f'Bearer {self.app.access}'}, 
+            refresh=self.app.refresh
+        )
+        self.dialog.dismiss()
+        self.dialog = None
+

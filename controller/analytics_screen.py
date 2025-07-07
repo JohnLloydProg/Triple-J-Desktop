@@ -136,11 +136,13 @@ class AnalyticsScreen(MDScreen):
         self.ids.sales_container.clear_widgets()
         for sale in result:
             sale_component = SalesComponent()
+            receipt_no = sale.get('receipt_no')
+            description = sale.get('description')
             sale_component.set_details(
                 date=sale.get('date'),
                 amount=sale.get('amount'),
-                description=sale.get('description', 'N/A'),
-                receipt_no=sale.get('receipt_no', 'N/A')
+                description= description if (description) else 'N/A',
+                receipt_no= receipt_no if (receipt_no) else 'N/A'
             )
             self.ids.sales_container.add_widget(sale_component)
 
