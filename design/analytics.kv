@@ -71,12 +71,14 @@
                                 color: 1, 1, 1, 1
                                 size_hint: None, 1
                                 width: '120dp'
-                        MDFillRoundFlatButton:
+                        MyButton:
                             text: "Generate Report"
                             md_bg_color: app.theme['violet']
                             on_press: root.generate_report(sales_box.active, attendance_box.active, activity_box.active)
                             size_hint_y: None
                             height: '70dp'
+                            on_enter: self.md_bg_color = app.theme['violet-darker']
+                            on_leave: self.md_bg_color = app.theme['violet']
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_height: True
@@ -99,12 +101,14 @@
                             anchor_y: 'center'
                             size_hint_y: None
                             height: '70dp'
-                            MDFillRoundFlatButton:
+                            MyButton:
                                 text: "Save Chart"
                                 md_bg_color: app.theme['green']
                                 on_press: root.save_chart(pie_charts)
                                 size_hint_y: None
                                 height: '70dp'
+                                on_enter: self.md_bg_color = app.theme['green-darker']
+                                on_leave: self.md_bg_color = app.theme['green']
                         MatplotFigureSubplot:
                             id: pie_charts
                             draw_all_axes: True
@@ -120,66 +124,90 @@
                     padding: '10dp'
                     radius: 5
                     md_bg_color: app.theme['secondary']
-                    MDFillRoundFlatButton:
+                    MyButton:
                         text: "Jan"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Feb"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Mar"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Apr"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "May"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Jun"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Jul"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Aug"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Sep"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Oct"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Nov"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
-                    MDFillRoundFlatButton:
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
+                    MyButton:
                         text: "Dec"
                         md_bg_color: app.theme['tertiary']
                         on_press: root.select_month(self.text)
                         size_hint_x: 1
+                        on_enter: self.md_bg_color = app.theme['green-darker'] if root.month == self.text else app.theme['tertiary-darker']
+                        on_leave: self.md_bg_color = app.theme['green'] if root.month == self.text else app.theme['tertiary']
                 MDBoxLayout:
                     orientation: 'vertical'
                     padding: '20dp'
@@ -202,12 +230,14 @@
                             anchor_y: 'center'
                             size_hint_y: None
                             height: '70dp'
-                            MDFillRoundFlatButton:
+                            MyButton:
                                 text: "Save Chart"
                                 md_bg_color: app.theme['green']
                                 on_press: root.save_chart(hours_chart)
                                 size_hint_y: None
                                 height: '70dp'
+                                on_enter: self.md_bg_color = app.theme['green-darker']
+                                on_leave: self.md_bg_color = app.theme['green']
                         MatplotFigureSubplot:
                             id: hours_chart
                             draw_all_axes: True
@@ -224,12 +254,14 @@
                             anchor_y: 'center'
                             size_hint_y: None
                             height: '70dp'
-                            MDFillRoundFlatButton:
+                            MyButton:
                                 text: "Save Chart"
                                 md_bg_color: app.theme['green']
                                 on_press: root.save_chart(days_chart)
                                 size_hint_y: None
                                 height: '70dp'
+                                on_enter: self.md_bg_color = app.theme['green-darker']
+                                on_leave: self.md_bg_color = app.theme['green']
                         MatplotFigureSubplot:
                             id: days_chart
                             draw_all_axes: True

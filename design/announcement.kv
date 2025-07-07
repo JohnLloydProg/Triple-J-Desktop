@@ -49,11 +49,13 @@
                         size_hint: 1, None
                         height: self.minimum_height
                         hint_text: 'Post Details'
-                MDFillRoundFlatButton:
+                MyButton:
                     text: "Post Announcement"
                     md_bg_color: app.theme['violet']
                     size_hint_x: 1
                     on_press: root.post_announcement()
+                    on_enter: self.md_bg_color = app.theme['violet-darker']
+                    on_leave: self.md_bg_color = app.theme['violet']
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: 0.6, 1
@@ -69,7 +71,7 @@
                         color: app.theme['accent']
                         font_size: '20dp'
                         bold: True
-                    MDIconButton:
+                    MyIconButton:
                         icon: 'refresh'
                         md_bg_color: app.theme['green']
                         size_hint: None, 1
@@ -77,6 +79,8 @@
                         icon_color: 1, 1, 1, 1
                         width: self.height
                         on_press: root.get_announcements()
+                        on_enter: self.md_bg_color = app.theme['green-darker']
+                        on_leave: self.md_bg_color = app.theme['green']
                 MDBoxLayout:
                     orientation: 'vertical'
                     size_hint: 1, 1
@@ -115,13 +119,15 @@
                 size_hint: None, 1
                 width: self.text_size[0] 
                 bold: True
-            MDIconButton:
+            MyIconButton:
                 icon: 'delete'
                 size_hint_y: 1
                 width: self.height
                 theme_icon_color: 'Custom'
                 icon_color: app.theme['accent']
                 on_press: root.delete()
+                on_enter: self.icon_color = app.theme['accent-darker']
+                on_leave: self.icon_color = app.theme['accent']
     MDBoxLayout:
         size_hint: 1, None
         height: '1dp'

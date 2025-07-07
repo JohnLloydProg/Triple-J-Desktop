@@ -58,8 +58,10 @@
                         text_color_focus: 1, 1, 1, 1
                         size_hint_x: 1
                         hint_text: 'Enter your password'
-            MDFillRoundFlatButton:
+            MyButton:
                 text: "Login"
                 md_bg_color: app.theme['violet']
                 size_hint_x: 1
                 on_press: root.login()
+                on_enter: self.md_bg_color = app.theme['violet-darker']
+                on_leave: self.md_bg_color = app.theme['violet']

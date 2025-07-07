@@ -37,11 +37,13 @@
                         text_color_focus: 1, 1, 1, 1
                         size_hint_x: 1
                         hint_text: 'Enter your email address'
-                    MDFillRoundFlatButton:
+                    MyButton:
                         text: "Register Email"
                         md_bg_color: app.theme['violet']
                         size_hint_x: 1
                         on_press: root.register_email(email.text)
+                        on_enter: self.md_bg_color = app.theme['violet-darker']
+                        on_leave: self.md_bg_color = app.theme['violet']
                 MDAnchorLayout:
                     anchor_x: 'center'
                     anchor_y: 'top'
@@ -143,12 +145,14 @@
                                 id: time_out
                                 text: ''
                                 color: app.theme['green']
-                MDFillRoundFlatButton:
+                MyButton:
                     text: 'Add Sales Record'
                     size_hint_x: 1
                     color: 0, 0, 0, 1
                     md_bg_color: app.theme['green']
                     on_press: root.add_sales_record()
+                    on_enter: self.md_bg_color = app.theme['green-darker']
+                    on_leave: self.md_bg_color = app.theme['green']
             MDBoxLayout:
                 orientation: 'vertical'
                 size_hint: 0.6, 1
@@ -168,12 +172,14 @@
                         orientation: 'horizontal'
                         adaptive_width: True
                         spacing: '10dp'
-                        MDFillRoundFlatButton:
+                        MyButton:
                             id: date_btn
                             text: '09/25/2025'
                             md_bg_color: app.theme['violet']
                             on_press: root.open_menu()
-                        MDIconButton:
+                            on_enter: self.md_bg_color = app.theme['violet-darker']
+                            on_leave: self.md_bg_color = app.theme['violet']
+                        MyIconButton:
                             icon: 'refresh'
                             md_bg_color: app.theme['green']
                             size_hint: None, 1
@@ -181,6 +187,8 @@
                             icon_color: 1, 1, 1, 1
                             width: self.height
                             on_press: root.get_attendances()
+                            on_enter: self.md_bg_color = app.theme['green-darker']
+                            on_leave: self.md_bg_color = app.theme['green']
                 MDBoxLayout:
                     orientation: 'vertical'
                     size_hint: 1, 1

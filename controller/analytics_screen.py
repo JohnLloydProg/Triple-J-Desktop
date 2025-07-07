@@ -145,10 +145,11 @@ class AnalyticsScreen(MDScreen):
             self.ids.sales_container.add_widget(sale_component)
 
     def select_month(self, month):
-        self.month = month
-        self.reset_btns()
-        self.get_activity_data()
-        self.get_sales_data()
+        if (self.month != month):
+            self.month = month
+            self.reset_btns()
+            self.get_activity_data()
+            self.get_sales_data()
     
     def reset_btns(self):
         for btn in self.ids.months_container.children:

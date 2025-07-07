@@ -46,7 +46,7 @@
                         on_text_validate: root.search(self.text, True)
                         hint_text: 'Search details here...'
                     MDBoxLayout:
-                    MDIconButton:
+                    MyIconButton:
                         icon: 'refresh'
                         md_bg_color: app.theme['green']
                         size_hint: None, 1
@@ -54,6 +54,8 @@
                         icon_color: 1, 1, 1, 1
                         width: self.height
                         on_press: root.get_members()
+                        on_enter: self.md_bg_color = app.theme['green-darker']
+                        on_leave: self.md_bg_color = app.theme['green']
                 ScrollView:
                     size_hint: 1, 1
                     MDStackLayout:

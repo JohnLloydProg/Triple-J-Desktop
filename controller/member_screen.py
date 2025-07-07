@@ -2,6 +2,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.card import MDCard
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.anchorlayout import MDAnchorLayout
+from kivymd.uix.behaviors import HoverBehavior
 from kivy.clock import Clock
 from kivy.network.urlrequest import UrlRequestUrllib
 from tools import GeneralRequest
@@ -50,7 +51,7 @@ class MemberScreen(MDScreen):
         self.searched = True
 
 
-class MemberComponent(MDCard):
+class MemberComponent(MDCard, HoverBehavior):
     def set_details(self, member_details:dict, root:MemberScreen):
         self.root = root
         self.member_details = member_details
@@ -70,6 +71,12 @@ class MemberComponent(MDCard):
         memberDetail.set_details(self.member_details)
         self.root.ids.detail_container.clear_widgets()
         self.root.ids.detail_container.add_widget(memberDetail)
+    
+    def on_enter(self, *args):
+        self.md_bg_color = App.get_running_app().theme['tertiary-darker']
+    
+    def on_leave(self, *args):
+        self.md_bg_color = App.get_running_app().theme['tertiary']
 
 
 class MemberDetail(MDBoxLayout):

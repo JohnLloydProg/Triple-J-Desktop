@@ -3,6 +3,11 @@
     text_size: self.width, None
     height: self.texture_size[1] + 10
 
+<MyButton@MDFillRoundFlatButton+HoverBehavior>:
+    bold: True
+
+<MyIconButton@MDIconButton+HoverBehavior>:
+
 <NavigationBar@MDBoxLayout>:
     orientation: 'horizontal'
     size_hint_x: 1
@@ -21,26 +26,36 @@
         adaptive_width: True
         spacing: '10dp'
         size_hint_y: 1
-        MDFillRoundFlatButton:
-            md_bg_color: app.theme['green'] if app.sm.current != 'home_screen' else app.theme['violet'] 
+        MyButton:
+            md_bg_color: app.theme['green'] if app.sm.current != 'home_screen' else app.theme['violet']
             text: 'Home'
             on_press: app.sm.current = 'home_screen'
-        MDFillRoundFlatButton:
+            on_enter: self.md_bg_color = app.theme['green-darker'] if app.sm.current != 'home_screen' else app.theme['violet-darker']
+            on_leave: self.md_bg_color = app.theme['green'] if app.sm.current != 'home_screen' else app.theme['violet']
+        MyButton:
             md_bg_color: app.theme['green'] if app.sm.current != 'member_screen' else app.theme['violet'] 
             text: 'Members'
-            on_press: app.sm.current = 'member_screen' 
-        MDFillRoundFlatButton:
+            on_press: app.sm.current = 'member_screen'
+            on_enter: self.md_bg_color = app.theme['green-darker'] if app.sm.current != 'member_screen' else app.theme['violet-darker']
+            on_leave: self.md_bg_color = app.theme['green'] if app.sm.current != 'member_screen' else app.theme['violet']
+        MyButton:
             md_bg_color: app.theme['green'] if app.sm.current != 'analytics_screen' else app.theme['violet'] 
             text: 'Analytics'
             on_press: app.sm.current = 'analytics_screen'
-        MDFillRoundFlatButton:
+            on_enter: self.md_bg_color = app.theme['green-darker'] if app.sm.current != 'analytics_screen' else app.theme['violet-darker']
+            on_leave: self.md_bg_color = app.theme['green'] if app.sm.current != 'analytics_screen' else app.theme['violet']
+        MyButton:
             md_bg_color: app.theme['green'] if app.sm.current != 'announcement_screen' else app.theme['violet'] 
             text: 'Announcements'
             on_press: app.sm.current = 'announcement_screen'
-        MDFillRoundFlatButton:
+            on_enter: self.md_bg_color = app.theme['green-darker'] if app.sm.current != 'announcement_screen' else app.theme['violet-darker']
+            on_leave: self.md_bg_color = app.theme['green'] if app.sm.current != 'announcement_screen' else app.theme['violet']
+        MyButton:
             md_bg_color: app.theme['accent']
             text: 'Logout'
             on_press: app.log_out()
+            on_enter: self.md_bg_color = app.theme['accent-darker']
+            on_leave: self.md_bg_color = app.theme['accent']
 
 
 <SpinnerContent>:
