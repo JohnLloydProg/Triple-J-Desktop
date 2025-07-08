@@ -1,6 +1,7 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy_matplotlib_widget.uix.graph_subplot_widget import MatplotFigureSubplot
+from kivymd.uix.behaviors import HoverBehavior
 from kivy.network.urlrequest import UrlRequestUrllib
 from tkinter.filedialog import asksaveasfilename
 import matplotlib.pyplot as plt
@@ -134,6 +135,7 @@ class AnalyticsScreen(MDScreen):
     
     def got_sales_data(self, request, result):
         self.ids.sales_container.clear_widgets()
+        total_sales = 0
         for sale in result:
             sale_component = SalesComponent()
             receipt_no = sale.get('receipt_no')
@@ -145,6 +147,8 @@ class AnalyticsScreen(MDScreen):
                 receipt_no= receipt_no if (receipt_no) else 'N/A'
             )
             self.ids.sales_container.add_widget(sale_component)
+            total_sales += float(sale.get('amount', 0))
+        self.ids.total_sales.text = f'P{str(total_sales)}'
 
     def select_month(self, month):
         if (self.month != month):
@@ -167,7 +171,7 @@ class AnalyticsScreen(MDScreen):
             print(f'Saved chart to {file}')
 
 
-class SalesComponent(MDBoxLayout):
+class SalesComponent(MDBoxLayout, HoverBehavior):
     def set_details(self, date, amount, description, receipt_no):
         self.ids.date.text = date
         self.ids.amount.text = str(amount)

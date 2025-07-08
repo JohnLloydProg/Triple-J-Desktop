@@ -276,12 +276,21 @@
                     spacing: '15dp'
                     radius: 5
                     md_bg_color: app.theme['secondary']
-                    MyLabel:
-                        text: 'Sales Report'
-                        halign: 'center'
-                        color: app.theme['accent']
-                        font_size: '20dp'
-                        bold: True
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        adaptive_height: True
+                        MyLabel:
+                            text: 'Sales Report'
+                            color: app.theme['accent']
+                            font_size: '20dp'
+                            bold: True
+                        MyLabel:
+                            id: total_sales
+                            text: 'P1000.00'
+                            halign: 'right'
+                            color: 1, 1, 1, 1
+                            font_size: '20dp'
+                            bold: True
                     MDBoxLayout:
                         orientation: 'horizontal'
                         adaptive_height: True
@@ -321,18 +330,21 @@
                                 id: sales_container
                                 orientation: 'vertical'
                                 adaptive_height: True
-                                spacing: '10dp'
 
 <SalesComponent>:
     orientation: 'horizontal'
     adaptive_height: True
     spacing: '10dp'
+    on_enter: self.md_bg_color = app.theme['tertiary-darker']
+    on_leave: self.md_bg_color = app.theme['tertiary']
+    padding: 0, '10dp', 0, '10dp'
     MyLabel:
         id: date
         text: '2023-01-01'
         color: 1, 1, 1, 1
         halign: 'center'
         font_size: '15dp'
+        bold: True
     MyLabel:
         id: amount
         text: '200.00'
